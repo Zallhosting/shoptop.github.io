@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zallShop - Top Up Profesional</title>
+    <style>
+        :root {
+            --primary-red: #e63946;
+            --primary-blue: #1d3557;
+            --secondary-blue: #457b9d;
+            --light-blue: #a8dadc;
+            --cream: #f1faee;
+            --accent: #ffbe0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--primary-blue);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(29, 53, 87, 0.1);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(29, 53, 87, 0.95);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            background: linear-gradient(rgba(29, 53, 87, 0.8), rgba(230, 57, 70, 0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary-blue);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 190, 11, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 190, 11, 0.6);
+        }
+
+        /* Features Section */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-red);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #f1faee 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+
+        .pricing-body {
+            padding: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-features li:before {
+            content: '✓';
+            color: var(--primary-red);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .pricing-button {
+            display: block;
+            text-align: center;
+            background: var(--primary-red);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-button:hover {
+            background: #c1121f;
+        }
+
+        /* How It Works Section */
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            position: relative;
+            padding: 2rem 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: rgba(230, 57, 70, 0.2);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            70% { transform: scale(1.1); opacity: 0.2; }
+            100% { transform: scale(0.8); opacity: 0.7; }
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+        }
+
+        .testimonials-section .section-title h2 {
+            color: white;
+        }
+
+        .testimonials-section .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .testimonials-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .testimonial-card {
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 2rem;
+            scroll-snap-align: start;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-content:before,
+        .testimonial-content:after {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+        }
+
+        .testimonial-content:before {
+            top: -20px;
+            left: -10px;
+        }
+
+        .testimonial-content:after {
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            background: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-question:after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-question:after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            background: #f8f9fa;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #f1faee 100%);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-red);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(29, 53, 87, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #c1121f;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-red);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-red);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--primary-blue);
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+
+            nav.active {
+                transform: translateY(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-red);
+        }
+
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 200px;
+            background: #f5f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-red);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--secondary-blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-rating span {
+            color: #666;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .product-button {
+            display: block;
+            text-align: center;
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.6rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .product-button:hover {
+            background: #14213d;
+        }
+
+        /* Top Up Products Section */
+        .topup-products {
+            background: linear-gradient(135deg, #f5f7fa 0%, #f1faee 100%);
+        }
+
+        .price-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .price-filter button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-blue);
+            background: transparent;
+            color: var(--primary-blue);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .price-filter button.active,
+        .price-filter button:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Loading Animation */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .notification.show {
+            bottom: 2rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #14213d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <a href="#home" class="logo">
+                <img src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-423c-51f7-b84e-63db528ff239/raw?se=2025-04-09T09%3A03%3A43Z&sp=r&sv=2024-08-04&sr=b&scid=e9065371-5b0b-5210-9442-da62ef2bf7d0&skoid=fa7966e7-f8ea-483c-919a-13acfd61d696&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-09T04%3A08%3A54Z&ske=2025-04-10T04%3A08%3A54Z&sks=b&skv=2024-08-04&sig=TS/HOMwjP%2B/dYUSDoXQc/IvKgjX2a7gpXjNyO1w9XQU%3D" alt="zallkaltim shop Logo">
+                zallkaltim<span>Shop</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#products">Produk</a></li>
+                    <li><a href="#topup">Top Up</a></li>
+                    <li><a href="#features">Fitur</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="reveal">Top Up Game & Voucher <span>Termurah</span> di Indonesia</h1>
+            <p class="reveal">Dapatkan berbagai voucher game, pulsa, dan layanan digital dengan harga terbaik. Proses cepat dan aman hanya di PergamShop.</p>
+            <a href="#topup" class="cta-button reveal">Beli Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="section-title">
+            <h2 class="reveal">Kenapa Memilih Kami?</h2>
+            <p class="reveal">Kami memberikan pelayanan terbaik dengan berbagai keunggulan yang tidak akan Anda temukan di tempat lain.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon">⚡</div>
+                <h3>Proses Cepat</h3>
+                <p>Proses top up hanya membutuhkan waktu kurang dari 2 menit setelah pembayaran berhasil.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">💰</div>
+                <h3>Harga Termurah</h3>
+                <p>Kami menawarkan harga paling kompetitif di pasaran dengan berbagai promo menarik.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">🔒</div>
+                <h3>100% Aman</h3>
+                <p>Transaksi Anda dilindungi dengan sistem keamanan terbaik dan garansi uang kembali.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">📱</div>
+                <h3>Layanan 24/7</h3>
+                <p>Customer service kami siap membantu Anda kapan saja, bahkan di hari libur sekalipun.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">🎁</div>
+                <h3>Bonus & Promo</h3>
+                <p>Dapatkan berbagai bonus dan promo menarik setiap minggu untuk pelanggan setia kami.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">🔄</div>
+                <h3>Pengembalian Dana</h3>
+                <p>Jika terjadi masalah, kami siap mengembalikan dana Anda tanpa biaya tambahan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <div class="section-title">
+            <h2 class="reveal">Produk Kami</h2>
+            <p class="reveal">Temukan berbagai produk digital berkualitas dengan harga terbaik.</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://wallpaperaccess.com/full/4597740.png" alt="Mobile Legends">
+                    <span class="product-badge">Populer</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Game</span>
+                    <h3 class="product-title">Mobile Legends</h3>
+                    <div class="product-price">Rp 10.000 - Rp 1.000.000</div>
+                    <div class="product-rating">★★★★★ <span>(4.9/5)</span></div>
+                    <a href="#mobile-legends" class="product-button">Lihat Voucher</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://dl.dir.freefiremobile.com/common/test/official/FF_SHORT_LOGO.PNG.png" alt="Free Fire">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Game</span>
+                    <h3 class="product-title">Free Fire</h3>
+                    <div class="product-price">Rp 5.000 - Rp 500.000</div>
+                    <div class="product-rating">★★★★☆ <span>(4.7/5)</span></div>
+                    <a href="#free-fire" class="product-button">Lihat Voucher</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://purepng.com/public/uploads/large/purepng.com-playerunknowns-battlegrounds-logogameslogosplayerunknowns-battlegroundspubg-691522709260kl7uy.png" alt="PUBG Mobile">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Game</span>
+                    <h3 class="product-title">PUBG Mobile</h3>
+                    <div class="product-price">Rp 10.000 - Rp 800.000</div>
+                    <div class="product-rating">★★★★☆ <span>(4.6/5)</span></div>
+                    <a href="#pubg-mobile" class="product-button">Lihat Voucher</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://static.vecteezy.com/system/resources/previews/022/101/118/large_2x/valorant-logo-transparent-free-png.png" alt="Valorant">
+                    <span class="product-badge">Baru</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Game</span>
+                    <h3 class="product-title">Valorant</h3>
+                    <div class="product-price">Rp 20.000 - Rp 1.500.000</div>
+                    <div class="product-rating">★★★★★ <span>(4.9/5)</span></div>
+                    <a href="#valorant" class="product-button">Lihat Voucher</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://play-lh.googleusercontent.com/lgc9-YN03wS3-JUZbuHvBTShIp2iyGBLpi9B79e-S5iy8QoQZsTIdYf5WyWtV50-rW7r" alt="Pulsa">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Telekomunikasi</span>
+                    <h3 class="product-title">Pulsa All Operator</h3>
+                    <div class="product-price">Rp 1.000 - Rp 1.000.000</div>
+                    <div class="product-rating">★★★★★ <span>(5.0/5)</span></div>
+                    <a href="#pulsa" class="product-button">Lihat Voucher</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://techdaily.id/wp-content/uploads/2021/01/daftar-paket-internet-termurah.png" alt="Paket Data">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Telekomunikasi</span>
+                    <h3 class="product-title">Paket Data</h3>
+                    <div class="product-price">Rp 5.000 - Rp 300.000</div>
+                    <div class="product-rating">★★★★☆ <span>(4.8/5)</span></div>
+                    <a href="#paket-data" class="product-button">Lihat Voucher</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://logospng.org/download/spotify/logo-spotify-icon-4096.png" alt="Spotify">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Streaming</span>
+                    <h3 class="product-title">Spotify Premium</h3>
+                    <div class="product-price">Rp 25.000 - Rp 299.000</div>
+                    <div class="product-rating">★★★★★ <span>(4.9/5)</span></div>
+                    <a href="#spotify" class="product-button">Lihat Voucher</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://pngimg.com/uploads/netflix/netflix_PNG10.png" alt="Netflix">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Streaming</span>
+                    <h3 class="product-title">Netflix</h3>
+                    <div class="product-price">Rp 50.000 - Rp 400.000</div>
+                    <div class="product-rating">★★★★☆ <span>(4.7/5)</span></div>
+                    <a href="#netflix" class="product-button">Lihat Voucher</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Up Section -->
+    <section class="section topup-products" id="topup">
+        <div class="section-title">
+            <h2 class="reveal">Top Up Game</h2>
+            <p class="reveal">Pilih nominal top up yang Anda inginkan dan dapatkan bonus eksklusif.</p>
+        </div>
+        
+        <div class="price-filter">
+            <button class="active" data-filter="all">Semua</button>
+            <button data-filter="1-10000">Rp 1 - 10.000</button>
+            <button data-filter="10000-50000">Rp 10.000 - 50.000</button>
+            <button data-filter="50000-100000">Rp 50.000 - 100.000</button>
+            <button data-filter="100000-1000000">Rp 100.000+</button>
+        </div>
+        
+        <div class="product-grid" id="topupGrid">
+            <!-- Items will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section">
+        <div class="section-title">
+            <h2 class="reveal">Cara Berbelanja</h2>
+            <p class="reveal">Hanya 3 langkah mudah untuk mendapatkan produk digital yang Anda inginkan.</p>
+        </div>
+        <div class="steps-container">
+            <div class="step reveal">
+                <div class="step-number">1</div>
+                <h3>Pilih Produk</h3>
+                <p>Cari dan pilih produk atau voucher yang Anda butuhkan dari katalog kami.</p>
+            </div>
+            <div class="step reveal">
+                <div class="step-number">2</div>
+                <h3>Lakukan Pembayaran</h3>
+                <p>Selesaikan pembayaran menggunakan metode yang tersedia (transfer bank, e-wallet, dll).</p>
+            </div>
+            <div class="step reveal">
+                <div class="step-number">3</div>
+                <h3>Dapatkan Produk</h3>
+                <p>Produk akan dikirim langsung ke email/akun game Anda dalam waktu maksimal 5 menit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section">
+        <div class="section-title">
+            <h2 class="reveal">Apa Kata Pelanggan?</h2>
+            <p class="reveal">Berikut testimoni dari pelanggan setia kami yang puas dengan layanan PergamShop.</p>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonial-card reveal">
+                <div class="testimonial-content">
+                    "Saya sudah belanja di PergamShop selama 2 tahun dan selalu puas dengan pelayanannya. Proses top up sangat cepat dan harganya murah banget!"
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Andi Wijaya">
+                    <div class="author-info">
+                        <h4>Andi Wijaya</h4>
+                        <p>Pelanggan sejak 2021</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-content">
+                    "Pertama kali coba beli voucher game di sini dan ternyata benar-benar aman. CS-nya juga ramah dan responsif. Bakal jadi langganan nih!"
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Siti Rahma">
+                    <div class="author-info">
+                        <h4>Siti Rahma</h4>
+                        <p>Pelanggan sejak 2023</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-content">
+                    "Biasanya beli di tempat lain, tapi sejak temen rekomendasi PergamShop, saya pindah ke sini karena harganya lebih murah dan prosesnya lebih cepat."
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Budi Santoso">
+                    <div class="author-info">
+                        <h4>Budi Santoso</h4>
+                        <p>Pelanggan sejak 2022</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-content">
+                    "Waktu ada masalah dengan transaksi saya, CS-nya langsung membantu dengan sangat profesional. Sangat merekomendasikan PergamShop untuk top up game!"
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dewi Lestari">
+                    <div class="author-info">
+                        <h4>Dewi Lestari</h4>
+                        <p>Pelanggan sejak 2020</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="section-title">
+            <h2 class="reveal">Pertanyaan Umum</h2>
+            <p class="reveal">Temukan jawaban untuk pertanyaan yang sering diajukan oleh pelanggan kami.</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item reveal">
+                <div class="faq-question">Bagaimana cara melakukan top up di PergamShop?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Anda cukup memilih produk yang diinginkan, melakukan pembayaran, dan voucher akan dikirim ke email/akun game Anda dalam waktu maksimal 5 menit setelah pembayaran dikonfirmasi.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question">Metode pembayaran apa saja yang tersedia?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Kami menerima berbagai metode pembayaran termasuk transfer bank (BCA, BRI, BNI, Mandiri), e-wallet (OVO, Dana, Gopay, ShopeePay), serta minimarket (Alfamart, Indomaret).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question">Berapa lama proses pengiriman voucher?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Umumnya voucher dikirim dalam waktu 1-5 menit setelah pembayaran berhasil. Jika lebih dari 15 menit belum diterima, silakan hubungi customer service kami.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question">Apakah ada garansi jika voucher tidak bisa digunakan?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Ya, kami memberikan garansi 100% uang kembali jika voucher yang kami kirim tidak dapat digunakan dengan syarat dan ketentuan yang berlaku.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-question">Bagaimana jika salah memasukkan ID game?</div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Segera hubungi customer service kami sebelum melakukan pembayaran. Jika pembayaran sudah dilakukan, kami akan berusaha membantu namun tidak dapat menjamin pengembalian dana.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="section-title">
+            <h2 class="reveal">Hubungi Kami</h2>
+            <p class="reveal">Punya pertanyaan atau butuh bantuan? Tim kami siap membantu Anda.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-method reveal">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h3>Telepon</h3>
+                        <p><a href="tel:+6285246691849">0852-4669-1849</a></p>
+                    </div>
+                </div>
+                <div class="contact-method reveal">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:cs@pergamshop.id">cs@zallhosting.bid.id</a></p>
+                    </div>
+                </div>
+                <div class="contact-method reveal">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-details">
+                        <h3>WhatsApp</h3>
+                        <p><a href="https://wa.me/6285246691849">0852-4669-1849</a></p>
+                    </div>
+                </div>
+                <div class="contact-method reveal">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>Alamat</h3>
+                        <p> kalimantan timur, balikpapan, Indonesia</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form reveal">
+                <h3 class="modal-title">Kirim Pesan</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subjek</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Tentang Kami</h3>
+                <p>zallkaltim Shop adalah platform top up game dan voucher digital terpercaya di Indonesia dengan harga termurah dan proses cepat.</p>
+                <div class="social-links">
+                    <a href="#"><span>FB</span></a>
+                    <a href="#"><span>IG</span></a>
+                    <a href="#"><span>TW</span></a>
+                    <a href="#"><span>YT</span></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Produk</h3>
+                <ul>
+                    <li><a href="#mobile-legends">Mobile Legends</a></li>
+                    <li><a href="#free-fire">Free Fire</a></li>
+                    <li><a href="#pubg-mobile">PUBG Mobile</a></li>
+                    <li><a href="#valorant">Valorant</a></li>
+                    <li><a href="#pulsa">Pulsa & Paket Data</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Layanan</h3>
+                <ul>
+                    <li><a href="#how-to-order">Cara Pesan</a></li>
+                    <li><a href="#payment-methods">Metode Pembayaran</a></li>
+                    <li><a href="#promotions">Promo & Diskon</a></li>
+                    <li><a href="#faq">Pertanyaan Umum</a></li>
+                    <li><a href="#terms">Syarat & Ketentuan</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Hubungi Kami</h3>
+                <ul>
+                    <li><a href="tel:+6285246691849">0852-4669-1849</a></li>
+                    <li><a href="mailto:cs@pergamshop.id">cs@zallhosting.biz.id</a></li>
+                    <li><a href="https://wa.me/6285246691849">WhatsApp</a></li>
+                    <li>Jam Operasional: 24/7</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 zallkaltim shop. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/6285246691849" class="whatsapp-button" id="whatsappButton">💬</a>
+
+    <!-- Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title" id="modalTitle">Product Title</h2>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p>Memproses...</p>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Background Animation
+        const bgAnimation = document.getElementById('bgAnimation');
+        const numberOfCircle = 30;
+
+        for (let i = 0; i < numberOfCircle; i++) {
+            const circle = document.createElement('div');
+            circle.classList.add('bg-circle');
+            
+            const size = Math.random() * 200 + 50;
+            circle.style.width = `${size}px`;
+            circle.style.height = `${size}px`;
+            
+            circle.style.left = `${Math.random() * 100}%`;
+            circle.style.top = `${Math.random() * 100}%`;
+            
+            circle.style.animationDelay = `${Math.random() * 15}s`;
+            circle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            
+            bgAnimation.appendChild(circle);
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mainNav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+            });
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+                
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const loader = document.getElementById('loader');
+        const notification = document.getElementById('notification');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show loader
+            loader.style.display = 'flex';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                loader.style.display = 'none';
+                
+                // Show notification
+                notification.textContent = 'Pesan Anda telah terkirim! Kami akan segera menghubungi Anda.';
+                notification.classList.add('show');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide notification after 5 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }, 2000);
+        });
+
+        // Product Modal
+        const productModal = document.getElementById('productModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        
+        document.querySelectorAll('.product-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const productCard = button.closest('.product-card');
+                const productName = productCard.querySelector('.product-title').textContent;
+                const productPrice = productCard.querySelector('.product-price').textContent;
+                
+                modalTitle.textContent = productName;
+                
+                modalBody.innerHTML = `
+                    <div class="product-modal-content">
+                        <div class="product-modal-image">
+                            <img src="https://via.placeholder.com/300x300" alt="${productName}">
+                        </div>
+                        <div class="product-modal-info">
+                            <p><strong>Harga:</strong> ${productPrice}</p>
+                            <p><strong>Kategori:</strong> ${productCard.querySelector('.product-category').textContent}</p>
+                            <p><strong>Rating:</strong> ${productCard.querySelector('.product-rating').innerHTML}</p>
+                            <p>Silakan pilih nominal yang diinginkan:</p>
+                            
+                            <div class="price-options">
+                                ${generatePriceOptions(productName)}
+                            </div>
+                            
+                            <button class="cta-button" onclick="orderViaWhatsApp('${productName}', '0')">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                `;
+                
+                productModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Generate price options based on product
+        function generatePriceOptions(productName) {
+            let options = '';
+            const prices = getPricesForProduct(productName);
+            
+            prices.forEach(price => {
+                options += `
+                    <div class="price-option" onclick="selectPriceOption(this, ${price.value})">
+                        <input type="radio" name="priceOption" id="price-${price.value}" value="${price.value}">
+                        <label for="price-${price.value}">
+                            <span class="price-amount">${price.label}</span>
+                            <span class="price-bonus">${price.bonus ? `+ Bonus ${price.bonus}` : ''}</span>
+                        </label>
+                    </div>
+                `;
+            });
+            
+            return options;
+        }
+
+        // Get prices for specific product
+        function getPricesForProduct(productName) {
+            // Base prices for different product categories
+            if (productName.includes('Mobile Legends')) {
+                return [
+                    { value: 10000, label: 'Rp 10.000', bonus: '' },
+                    { value: 25000, label: 'Rp 25.000', bonus: '5 Diamond' },
+                    { value: 50000, label: 'Rp 50.000', bonus: '12 Diamond' },
+                    { value: 100000, label: 'Rp 100.000', bonus: '30 Diamond' },
+                    { value: 250000, label: 'Rp 250.000', bonus: '85 Diamond' },
+                    { value: 500000, label: 'Rp 500.000', bonus: '200 Diamond' },
+                    { value: 1000000, label: 'Rp 1.000.000', bonus: '500 Diamond' }
+                ];
+            } else if (productName.includes('Free Fire')) {
+                return [
+                    { value: 5000, label: 'Rp 5.000', bonus: '' },
+                    { value: 12000, label: 'Rp 12.000', bonus: '' },
+                    { value: 25000, label: 'Rp 25.000', bonus: '5 Diamond' },
+                    { value: 50000, label: 'Rp 50.000', bonus: '12 Diamond' },
+                    { value: 100000, label: 'Rp 100.000', bonus: '30 Diamond' },
+                    { value: 250000, label: 'Rp 250.000', bonus: '85 Diamond' },
+                    { value: 500000, label: 'Rp 500.000', bonus: '200 Diamond' }
+                ];
+            } else if (productName.includes('Pulsa')) {
+                return [
+                    { value: 1000, label: 'Rp 1.000', bonus: '' },
+                    { value: 5000, label: 'Rp 5.000', bonus: '' },
+                    { value: 10000, label: 'Rp 10.000', bonus: '' },
+                    { value: 25000, label: 'Rp 25.000', bonus: '' },
+                    { value: 50000, label: 'Rp 50.000', bonus: '' },
+                    { value: 100000, label: 'Rp 100.000', bonus: '' },
+                    { value: 250000, label: 'Rp 250.000', bonus: '' },
+                    { value: 500000, label: 'Rp 500.000', bonus: '' },
+                    { value: 1000000, label: 'Rp 1.000.000', bonus: '' }
+                ];
+            } else {
+                // Default prices for other products
+                return [
+                    { value: 10000, label: 'Rp 10.000', bonus: '' },
+                    { value: 25000, label: 'Rp 25.000', bonus: '' },
+                    { value: 50000, label: 'Rp 50.000', bonus: '' },
+                    { value: 100000, label: 'Rp 100.000', bonus: '' },
+                    { value: 250000, label: 'Rp 250.000', bonus: '' },
+                    { value: 500000, label: 'Rp 500.000', bonus: '' }
+                ];
+            }
+        }
+
+        // Select price option
+        function selectPriceOption(element, price) {
+            document.querySelectorAll('.price-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            element.querySelector('input').checked = true;
+            
+            // Update order button with selected price
+            const orderButton = document.querySelector('.product-modal-info .cta-button');
+            orderButton.setAttribute('onclick', `orderViaWhatsApp('${modalTitle.textContent}', ${price})`);
+        }
+
+        // Order via WhatsApp
+        function orderViaWhatsApp(productName, price) {
+            let priceLabel = 'Nominal Belum Dipilih';
+            
+            if (price > 0) {
+                const prices = getPricesForProduct(productName);
+                const selectedPrice = prices.find(p => p.value === price);
+                priceLabel = selectedPrice ? selectedPrice.label : `Rp ${price.toLocaleString('id-ID')}`;
+            }
+            
+            const message = `Halo PergamShop, saya ingin memesan:\n\nProduk: ${productName}\nNominal: ${priceLabel}\n\nMohon info lebih lanjut mengenai cara pembayarannya. Terima kasih.`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/6285246691849?text=${encodedMessage}`, '_blank');
+            
+            // Close modal
+            productModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            productModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                productModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Initialize top up products
+        function initTopUpProducts() {
+            const topupGrid = document.getElementById('topupGrid');
+            const products = [
+                { id: 'ml1', name: 'Mobile Legends 10 Diamond', price: 1000, category: 'game', game: 'Mobile Legends' },
+                { id: 'ml2', name: 'Mobile Legends 25 Diamond', price: 2500, category: 'game', game: 'Mobile Legends' },
+                { id: 'ml3', name: 'Mobile Legends 50 Diamond', price: 5000, category: 'game', game: 'Mobile Legends' },
+                { id: 'ml4', name: 'Mobile Legends 100 Diamond', price: 10000, category: 'game', game: 'Mobile Legends' },
+                { id: 'ml5', name: 'Mobile Legends 250 Diamond', price: 25000, category: 'game', game: 'Mobile Legends' },
+                { id: 'ml6', name: 'Mobile Legends 500 Diamond', price: 50000, category: 'game', game: 'Mobile Legends' },
+                { id: 'ml7', name: 'Mobile Legends 1000 Diamond', price: 100000, category: 'game', game: 'Mobile Legends' },
+                { id: 'ml8', name: 'Mobile Legends 2500 Diamond', price: 250000, category: 'game', game: 'Mobile Legends' },
+                { id: 'ml9', name: 'Mobile Legends 5000 Diamond', price: 500000, category: 'game', game: 'Mobile Legends' },
+                { id: 'ml10', name: 'Mobile Legends 10000 Diamond', price: 1000000, category: 'game', game: 'Mobile Legends' },
+                
+                { id: 'ff1', name: 'Free Fire 5 Diamond', price: 1000, category: 'game', game: 'Free Fire' },
+                { id: 'ff2', name: 'Free Fire 12 Diamond', price: 2500, category: 'game', game: 'Free Fire' },
+                { id: 'ff3', name: 'Free Fire 25 Diamond', price: 5000, category: 'game', game: 'Free Fire' },
+                { id: 'ff4', name: 'Free Fire 50 Diamond', price: 10000, category: 'game', game: 'Free Fire' },
+                { id: 'ff5', name: 'Free Fire 100 Diamond', price: 25000, category: 'game', game: 'Free Fire' },
+                { id: 'ff6', name: 'Free Fire 250 Diamond', price: 50000, category: 'game', game: 'Free Fire' },
+                { id: 'ff7', name: 'Free Fire 500 Diamond', price: 100000, category: 'game', game: 'Free Fire' },
+                { id: 'ff8', name: 'Free Fire 1000 Diamond', price: 250000, category: 'game', game: 'Free Fire' },
+                { id: 'ff9', name: 'Free Fire 2500 Diamond', price: 500000, category: 'game', game: 'Free Fire' },
+                
+                { id: 'pulsa1', name: 'Pulsa 1.000', price: 1000, category: 'pulsa' },
+                { id: 'pulsa2', name: 'Pulsa 5.000', price: 5000, category: 'pulsa' },
+                { id: 'pulsa3', name: 'Pulsa 10.000', price: 10000, category: 'pulsa' },
+                { id: 'pulsa4', name: 'Pulsa 25.000', price: 25000, category: 'pulsa' },
+                { id: 'pulsa5', name: 'Pulsa 50.000', price: 50000, category: 'pulsa' },
+                { id: 'pulsa6', name: 'Pulsa 100.000', price: 100000, category: 'pulsa' },
+                { id: 'pulsa7', name: 'Pulsa 250.000', price: 250000, category: 'pulsa' },
+                { id: 'pulsa8', name: 'Pulsa 500.000', price: 500000, category: 'pulsa' },
+                { id: 'pulsa9', name: 'Pulsa 1.000.000', price: 1000000, category: 'pulsa' },
+                
+                { id: 'data1', name: 'Paket Data 1GB', price: 10000, category: 'data' },
+                { id: 'data2', name: 'Paket Data 3GB', price: 25000, category: 'data' },
+                { id: 'data3', name: 'Paket Data 5GB', price: 50000, category: 'data' },
+                { id: 'data4', name: 'Paket Data 10GB', price: 100000, category: 'data' },
+                { id: 'data5', name: 'Paket Data 25GB', price: 250000, category: 'data' },
+                
+                { id: 'val1', name: 'Valorant 100 Points', price: 10000, category: 'game', game: 'Valorant' },
+                { id: 'val2', name: 'Valorant 250 Points', price: 25000, category: 'game', game: 'Valorant' },
+                { id: 'val3', name: 'Valorant 500 Points', price: 50000, category: 'game', game: 'Valorant' },
+                { id: 'val4', name: 'Valorant 1000 Points', price: 100000, category: 'game', game: 'Valorant' },
+                { id: 'val5', name: 'Valorant 2500 Points', price: 250000, category: 'game', game: 'Valorant' },
+                { id: 'val6', name: 'Valorant 5000 Points', price: 500000, category: 'game', game: 'Valorant' },
+                { id: 'val7', name: 'Valorant 10000 Points', price: 1000000, category: 'game', game: 'Valorant' }
+            ];
+            
+            // Sort products by price
+            products.sort((a, b) => a.price - b.price);
+            
+            // Display all products initially
+            displayProducts(products);
+            
+            // Price filter functionality
+            document.querySelectorAll('.price-filter button').forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.price-filter button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.dataset.filter;
+                    let filteredProducts = [];
+                    
+                    if (filter === 'all') {
+                        filteredProducts = products;
+                    } else {
+                        const [min, max] = filter.split('-').map(Number);
+                        
+                        filteredProducts = products.filter(product => {
+                            if (max) {
+                                return product.price >= min && product.price <= max;
+                            } else {
+                                return product.price >= min;
+                            }
+                        });
+                    }
+                    
+                    displayProducts(filteredProducts);
+                });
+            });
+            
+            function displayProducts(productsToDisplay) {
+                topupGrid.innerHTML = '';
+                
+                productsToDisplay.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card reveal';
+                    productCard.innerHTML = `
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-price">Rp ${product.price.toLocaleString('id-ID')}</div>
+                            ${product.game ? `<div class="product-category">${product.game}</div>` : ''}
+                            <button class="product-button" onclick="orderViaWhatsApp('${product.name}', ${product.price})">Beli Sekarang</button>
+                        </div>
+                    `;
+                    
+                    topupGrid.appendChild(productCard);
+                });
+                
+                // Trigger reveal animation for new products
+                revealOnScroll();
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            initTopUpProducts();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update URL
+                        history.pushState(null, null, targetId);
+                    }
+                });
+            });
+            
+            // Handle back/forward navigation
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash;
+                if (hash) {
+                    const targetElement = document.querySelector(hash);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // WhatsApp button with animation
+        const whatsappButton = document.getElementById('whatsappButton');
+        
+        // Add animation to WhatsApp button
+        setInterval(() => {
+            whatsappButton.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                whatsappButton.style.transform = 'scale(1)';
+            }, 500);
+        }, 5000);
+    </script>
+</body>
+</html>
